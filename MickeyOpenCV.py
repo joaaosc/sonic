@@ -1,6 +1,6 @@
 import cv2
-from pdf2image import *  # type: ignore
-import fitz  # type: ignore
+from pdf2image import *
+import fitz
 
 
 # 'Primeira tentativa de ML: Viola-Jones algorithm #
