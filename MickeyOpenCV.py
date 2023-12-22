@@ -1,5 +1,3 @@
-#!.\venv\Scripts\python.exe
-
 import cv2
 from pdf2image import *  # type: ignore
 import fitz  # type: ignore
