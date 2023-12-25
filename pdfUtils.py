@@ -22,7 +22,9 @@ class Pdfutils:
         pix_list = []
         for page in document:
             if int(page.bound().width) > int(page.bound().height):
-                pix = page.get_pixmap()  # render page to an image
+                zoom = 3.0  # Aumentar a resolução por um fator de 2
+                mat = fitz.Matrix(zoom, zoom)
+                pix = page.get_pixmap(matrix=mat)  # Render page to an image with increased resolution
                 pix_list.append(pix)
                 print("probably drawing found")
             else:
