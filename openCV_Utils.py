@@ -1,5 +1,6 @@
 import cv2
-
+import io
+from PIL import Image
 
 def preprocess_image(image_path):
     """
@@ -7,7 +8,7 @@ def preprocess_image(image_path):
     Args:
         image_path (str): Caminho da imagem
     Returns:
-        numpy.ndarray: Imagem binarizadaself.
+        numpy.ndarray: Imagem binarizada.
     """
 
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
