@@ -1,7 +1,8 @@
 import os
 import click
 import configparser
-from pdfUtils import Pdfutils
+import ml_lib
+from pdf_lib import PdfUtils
 import multiprocessing
 
 #  This is a tool created to help debug our SAA Python scripts.
@@ -20,10 +21,20 @@ def run_function(filename):
     """
     print(f"Executando script em: {filename}")
 
-    pdf_utils = Pdfutils(filename)
-    pdf_utils.get_text()
-    drawings = pdf_utils.get_possible_drwaings()
-    success = pdf_utils.create_combined_image(drawings)
+    # pdf to image algorithm
+
+    instance = PdfUtils(filename)
+    instance.get_text()
+    drawings = instance.get_possible_drwaings()
+    combinedimage = instance.create_combined_image(drawings,save=True)
+    instance.construct_DWG_image(combinedimage)
+
+    # finished image construction algorithm
+
+    # ---------- trial one: use ml_lib and DETR_RESNET101 ----------- #
+    model_instance = ml_lib.MODEL_FACEBOOK_DETR_RESNET_101(instance)
+    model_instance.run()
+
 
 def update_project_path():
     """
